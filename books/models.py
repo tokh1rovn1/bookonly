@@ -31,7 +31,7 @@ class Book(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     price = models.DecimalField(max_digits=9, decimal_places=2)
     descriptions = models.TextField(blank=True)
-    cover_image = models.ImageField(upload_to='books/', blank=True, null=True)
+    cover_image = models.ImageField(upload_to='media/', blank=True, null=True)
     created_add = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

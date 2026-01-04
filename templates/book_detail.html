@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ book.title }} - BooksOnly{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-10">
+        <nav aria-label="breadcrumb" class="mb-4">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'book_list' %}" class="text-decoration-none">Bosh sahifa</a></li>
+                <li class="breadcrumb-item active">{{ book.category.name }}</li>
+            </ol>
+        </nav>
+
+        <div class="card border-0 shadow-sm overflow-hidden" style="border-radius: 15px;">
+            <div class="row g-0">
+                <div class="col-md-5 bg-light d-flex align-items-center justify-content-center p-4">
+                    {% if book.cover_image %}
+                        <img src="{{ book.cover_image.url }}" class="img-fluid rounded shadow-sm" alt="{{ book.title }}" style="max-height: 450px; object-fit: cover;">
+                    {% else %}
+                        <div class="text-muted">Rasm mavjud emas</div>
+                    {% endif %}
+                </div>
+
+                <div class="col-md-7">
+                    <div class="card-body p-4 p-lg-5">
+                        <h1 class="display-6 fw-bold mb-3">{{ book.title }}</h1>
+                        
+                        <div class="mb-4">
+                            <span class="badge bg-light text-primary border border-primary-subtle px-3 py-2 mb-2">
+                                {{ book.category.name }}
+                            </span>
+                            <p class="text-muted mb-1">Muallif: <span class="fw-semibold text-dark">{{ book.author.name }}</span></p>
+                            <h3 class="text-primary fw-bold mt-2">{{ book.price }} so'm</h3>
+                        </div>
+
+                        <hr class="my-4 opacity-25">
+
+                        <h5 class="fw-bold">Tavsif</h5>
+                        <div class="text-secondary lh-lg">
+                            {{ book.description|linebreaks }}
+                        </div>
+
+                        <div class="mt-5 d-grid gap-2 d-md-flex">
+                            <button class="btn btn-primary btn-lg px-5">Savatga qo'shish</button>
+                            <a href="{% url 'book_list' %}" class="btn btn-outline-secondary btn-lg px-4">Orqaga</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
