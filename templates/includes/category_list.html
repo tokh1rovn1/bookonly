@@ -1,0 +1,12 @@
+<div class="list-group list-group-flush">
+    <a href="{% url 'book_list' %}" class="list-group-item list-group-item-action border-0 rounded-3 mb-1 py-2 {% if not current_category %}active{% endif %}">
+        <i class="bi bi-grid-fill me-2"></i> Barcha kitoblar
+    </a>
+
+    {% for cat in categories %}
+    <a href="?category={{ cat.id }}" 
+       class="list-group-item list-group-item-action border-0 rounded-3 mb-1 py-2 {% if current_category == cat.id|stringformat:'s' %}active{% endif %}">
+        <i class="bi bi-chevron-right small me-2"></i> {{ cat.name }}
+    </a>
+    {% endfor %}
+</div>
